@@ -26,6 +26,9 @@
 					},
 				},
 			},
+			"nursery": {
+				"useAwaitThenable": "warn",
+			},
 		},
 		"includes": ["**", "!**/src/vscode-python-environments/*.ts"],
 	},
