@@ -8,6 +8,7 @@ import {
 	workspace,
 } from 'vscode'
 import which from 'which'
+import { EXE_CONFIG_SECTION, EXE_CONFIG_SETTING } from '../common/constants.js'
 import { traceError } from '../common/logging.js'
 import execFile, { type ExecFile } from './exec-file.js'
 import type { CreateEnvOptions, HatchEnvInfo } from './hatch.js'
@@ -16,10 +17,7 @@ import Installer, { type InstallOptions } from './installer.js'
 
 export type { HatchEnvInfo }
 
-const EXE_CONFIG_KEY = 'hatch.executable'
-const EXE_CONFIG_SECTION = 'hatch' // dotted section name
-const EXE_CONFIG_SETTING = 'executable' // last element
-
+const EXE_CONFIG_KEY = `${EXE_CONFIG_SECTION}.${EXE_CONFIG_SETTING}`
 const VIEW_LOGS = 'View Logs'
 
 function isExecFileError(e: unknown): e is ExecFileException {

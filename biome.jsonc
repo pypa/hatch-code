@@ -40,7 +40,7 @@
 	},
 	"overrides": [
 		{
-			"includes": [".vscode/*.json", "tsconfig.json", "**/*.jsonc"],
+			"includes": ["**/.vscode/*.json", "tsconfig.json", "**/*.jsonc"],
 			"json": {
 				"formatter": {
 					"trailingCommas": "all",
