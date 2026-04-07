@@ -85,7 +85,7 @@
 		"husky": "^9.1.7",
 		"knip": "^6.3.0",
 		"lint-staged": "^16.4.0",
-		"rolldown": "^1.0.0-rc.12",
+		"rolldown": "^1.0.0-rc.13",
 		"typescript": "^6.0.2"
 	},
 	"packageManager": "yarn@4.13.0",
