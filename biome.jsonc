@@ -26,6 +26,9 @@
 					},
 				},
 			},
+			"nursery": {
+				"useAwaitThenable": "warn",
+			},
 		},
 		"includes": ["**", "!**/src/vscode-python-environments/*.ts"],
 	},
@@ -37,7 +40,7 @@
 	},
 	"overrides": [
 		{
-			"includes": [".vscode/*.json", "tsconfig.json", "**/*.jsonc"],
+			"includes": ["**/.vscode/*.json", "tsconfig.json", "**/*.jsonc"],
 			"json": {
 				"formatter": {
 					"trailingCommas": "all",
@@ -45,6 +48,16 @@
 				"parser": {
 					"allowComments": true,
 					"allowTrailingCommas": true,
+				},
+			},
+		},
+		{
+			"includes": ["**/*.test.ts"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"useImportExtensions": "off",
+					},
 				},
 			},
 		},
