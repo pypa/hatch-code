@@ -2,13 +2,12 @@ import swc from '@rollup/plugin-swc'
 import { defineConfig } from 'rolldown'
 import { withFilter } from 'rolldown/filter'
 import { esmExternalRequirePlugin } from 'rolldown/plugins'
-import { EXTENSION_ID } from './src/common/constants.js'
 
 export default defineConfig({
 	input: 'src/extension.ts',
 	external: ['vscode'],
 	output: {
-		file: `dist/${EXTENSION_ID}/extension.js`,
+		file: `dist/extension.js`,
 		sourcemap: true,
 	},
 	platform: 'node',

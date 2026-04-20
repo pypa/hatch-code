@@ -1,5 +1,6 @@
 import { type ExtensionContext, window } from 'vscode'
 import { HatchExecutableTracker } from './cli/index.js'
+import { EXTENSION_ID } from './common/constants.js'
 import { registerLogger } from './common/logging.js'
 import { setWorkspacePersistentState } from './common/persistent-state.js'
 import { HatchEnvManager } from './hatch-env-manager.js'
@@ -25,8 +26,10 @@ export async function activate(context: ExtensionContext): Promise<Api> {
 	const pkgManager = new HatchPackageManager(api, exe, log)
 	context.subscriptions.push(
 		exe,
-		api.registerEnvironmentManager(envManager),
-		api.registerPackageManager(pkgManager),
+		api.registerEnvironmentManager(envManager, {
+			extensionId: EXTENSION_ID,
+		}),
+		api.registerPackageManager(pkgManager, { extensionId: EXTENSION_ID }),
 	)
 
 	return {
