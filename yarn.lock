@@ -952,12 +952,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/secretlint-formatter-sarif@npm:^11.7.1":
-  version: 11.7.1
-  resolution: "@secretlint/secretlint-formatter-sarif@npm:11.7.1"
+"@secretlint/secretlint-formatter-sarif@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "@secretlint/secretlint-formatter-sarif@npm:12.1.0"
   dependencies:
-    node-sarif-builder: "npm:^3.4.0"
-  checksum: 10/083c19a1ce46611d45724e1921d945ecebed33f7923c9f18a291bd8c5229a246fd4a1c0067970ccf84d8c3bec82474d3a44c991b2a5a861086f3047401563ff7
+    node-sarif-builder: "npm:^4.0.0"
+  checksum: 10/9b0ffe3012b9328d8b1fc118f4293e45a0b910436e1fd2cf818535382be24c3e8de71723d02688d5c645dee8a2bcf1c8726ff4eca7352026e768fa7d4efe56b2
   languageName: node
   linkType: hard
 
@@ -970,12 +970,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/secretlint-rule-no-dotenv@npm:^11.7.1":
-  version: 11.7.1
-  resolution: "@secretlint/secretlint-rule-no-dotenv@npm:11.7.1"
+"@secretlint/secretlint-rule-no-dotenv@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "@secretlint/secretlint-rule-no-dotenv@npm:12.1.0"
   dependencies:
-    "@secretlint/types": "npm:11.7.1"
-  checksum: 10/1ea6891bf3237ef5f2b4c598345edec8052d4f67bf7b3da25b1704d29a8489691b43634f6043516857ad2daa8da7429d57f60eaf883402f5574614aa73c2a5a6
+    "@secretlint/types": "npm:12.1.0"
+  checksum: 10/2707556cd2b6b890b45d7756f6dc4dbd827d7d0eb387f93b88d5525fc2e68b4cd28e77519ea9759a7e3da89e93844c78ec9ddd17cc5e4df63d1e05b5b37c28ee
   languageName: node
   linkType: hard
 
@@ -986,10 +986,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/secretlint-rule-preset-recommend@npm:^11.7.1":
-  version: 11.7.1
-  resolution: "@secretlint/secretlint-rule-preset-recommend@npm:11.7.1"
-  checksum: 10/590346e24592b9f95028560b5fc7d384d4eebb6202478c456c377969fe9b1d499d93e6609fb81ebfe9870d211d8e318c8b9303a6b304326aafc62c2977be987b
+"@secretlint/secretlint-rule-preset-recommend@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "@secretlint/secretlint-rule-preset-recommend@npm:12.1.0"
+  checksum: 10/3522de7f6e8b895c0182faac4e819b126d243cdc385c2288ded2f48c77bd604be4e7ae174571a8198ee57a86b3071cfc572761c88b289c631fa3d19a08df9d9d
   languageName: node
   linkType: hard
 
@@ -1003,10 +1003,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/types@npm:11.7.1":
-  version: 11.7.1
-  resolution: "@secretlint/types@npm:11.7.1"
-  checksum: 10/580a2d139bd7b7acd754512938f73a76fac38dd86b9a001f1bd2d8b142df0c384891f20cb61e6ed35638ff7f6795877e80bf3475e665fefdb6fe6d09f5482ba4
+"@secretlint/types@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@secretlint/types@npm:12.1.0"
+  checksum: 10/40d57af6c1172e7191736aa4a8cada187bd1db59ff54f9e1c1cab48eca3f9a346bf0275a4a804dc2c8b31731ada01dc4cbf27f4c15ccab1f0625dd3b26669471
   languageName: node
   linkType: hard
 
@@ -1475,9 +1475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vscode/vsce@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "@vscode/vsce@npm:3.7.1"
+"@vscode/vsce@npm:^3.9.1":
+  version: 3.9.1
+  resolution: "@vscode/vsce@npm:3.9.1"
   dependencies:
     "@azure/identity": "npm:^4.1.0"
     "@secretlint/node": "npm:^10.1.2"
@@ -1507,14 +1507,14 @@ __metadata:
     typed-rest-client: "npm:^1.8.4"
     url-join: "npm:^4.0.1"
     xml2js: "npm:^0.5.0"
-    yauzl: "npm:^2.3.1"
+    yauzl: "npm:^3.2.1"
     yazl: "npm:^2.2.2"
   dependenciesMeta:
     keytar:
       optional: true
   bin:
     vsce: vsce
-  checksum: 10/33fa4c24821577e4ee6e89f075b1530063fe3564300e46a14708ed283ec0a01f7626ebc859b8e6fa2f3b728de92fb9748c7124faf09d6b43100fc700484b587b
+  checksum: 10/0373284b9b2ccc4333e63ea09d2951726582c041d58373989f4c9f6a2b25af9c6837155684d2be3fdb22775cc3ddaf5b2c1fd7d0c9ce9c644d7d92fc261c678b
   languageName: node
   linkType: hard
 
@@ -2490,15 +2490,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fd-slicer@npm:~1.1.0":
-  version: 1.1.0
-  resolution: "fd-slicer@npm:1.1.0"
-  dependencies:
-    pend: "npm:~1.2.0"
-  checksum: 10/db3e34fa483b5873b73f248e818f8a8b59a6427fd8b1436cd439c195fdf11e8659419404826059a642b57d18075c856d06d6a50a1413b714f12f833a9341ead3
-  languageName: node
-  linkType: hard
-
 "fdir@npm:^6.4.4":
   version: 6.4.4
   resolution: "fdir@npm:6.4.4"
@@ -2790,9 +2781,9 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:^2.4.11"
     "@rollup/plugin-swc": "npm:^0.4.0"
-    "@secretlint/secretlint-formatter-sarif": "npm:^11.7.1"
-    "@secretlint/secretlint-rule-no-dotenv": "npm:^11.7.1"
-    "@secretlint/secretlint-rule-preset-recommend": "npm:^11.7.1"
+    "@secretlint/secretlint-formatter-sarif": "npm:^12.1.0"
+    "@secretlint/secretlint-rule-no-dotenv": "npm:^12.1.0"
+    "@secretlint/secretlint-rule-preset-recommend": "npm:^12.1.0"
     "@swc-node/register": "npm:^1.11.1"
     "@swc/core": "npm:^1.15.24"
     "@types/mocha": "npm:^10.0.10"
@@ -2801,7 +2792,7 @@ __metadata:
     "@types/which": "npm:^3.0.4"
     "@vscode/test-cli": "npm:^0.0.12"
     "@vscode/test-electron": "npm:^2.5.2"
-    "@vscode/vsce": "npm:^3.7.1"
+    "@vscode/vsce": "npm:^3.9.1"
     callable-instance: "npm:^2.0.0"
     concurrently: "npm:^9.2.1"
     husky: "npm:^9.1.7"
@@ -3864,13 +3855,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-sarif-builder@npm:^3.2.0, node-sarif-builder@npm:^3.4.0":
+"node-sarif-builder@npm:^3.2.0":
   version: 3.4.0
   resolution: "node-sarif-builder@npm:3.4.0"
   dependencies:
     "@types/sarif": "npm:^2.1.7"
     fs-extra: "npm:^11.1.1"
   checksum: 10/13a15622ad6b3ea388e0d7c59b1d9077f98e87042ac6a5a5052489cf4de2fe50b2b85b074a24ee2db556f027c35bccf0be984ad23a8efd02131dcb53079ff53a
+  languageName: node
+  linkType: hard
+
+"node-sarif-builder@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "node-sarif-builder@npm:4.1.0"
+  dependencies:
+    "@types/sarif": "npm:^2.1.7"
+    fs-extra: "npm:^11.1.1"
+  checksum: 10/a12c30cb8329ae8251d0001764645b1dfb0e75614a570923e98ca32b93bdc4c7fdc4371a02a3ba31c55cb52d00c355191a585e873a3ffc804c038726cd089b53
   languageName: node
   linkType: hard
 
@@ -5587,13 +5588,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yauzl@npm:^2.3.1":
-  version: 2.10.0
-  resolution: "yauzl@npm:2.10.0"
+"yauzl@npm:^3.2.1":
+  version: 3.3.0
+  resolution: "yauzl@npm:3.3.0"
   dependencies:
     buffer-crc32: "npm:~0.2.3"
-    fd-slicer: "npm:~1.1.0"
-  checksum: 10/1e4c311050dc0cf2ee3dbe8854fe0a6cde50e420b3e561a8d97042526b4cf7a0718d6c8d89e9e526a152f4a9cec55bcea9c3617264115f48bd6704cf12a04445
+    pend: "npm:~1.2.0"
+  checksum: 10/ac8ae5276a3fb89b80464fc828aadcb5f888af7306a7920e699b9de05aead0490ac6698bc71952ea867c3f2a2c73ed8df91f18f5b6a67ce3231065327817c08f
   languageName: node
   linkType: hard
 
