@@ -1,14 +1,22 @@
+/** biome-ignore-all lint/suspicious/noTemplateCurlyInString: mocha-param uses this */
 import * as assert from 'node:assert'
 import { before, beforeEach } from 'mocha'
 import * as vscode from 'vscode'
-import { ENVS_EXT_ID, EXTENSION_ID } from '../src/common/constants'
+import type { HatchExecutableTracker } from '../src/cli'
+import execFile from '../src/cli/exec-file'
+import {
+	ENVS_EXT_ID,
+	EXE_CONFIG_SECTION,
+	EXE_CONFIG_SETTING,
+	EXTENSION_ID,
+} from '../src/common/constants'
 import type * as extension from '../src/extension'
 import type {
 	EnvironmentManager,
 	PythonEnvironmentApi,
 } from '../src/vscode-python-environments'
 import MockExec from './mock-exec'
-import { tmpdir, waitForCondition } from './test-utils'
+import { tmpdir, waitForCondition } from './utils'
 
 const getExtApi = (() => {
 	const apis: {
@@ -54,10 +62,11 @@ const getExtApi = (() => {
 describe('Env Manager', () => {
 	vscode.window.showInformationMessage('Start all tests.')
 
-	const exec = new MockExec('IDoNotExistButWeReplaceExecFile')
-	beforeEach(() => exec.reset())
+	const mockExec = new MockExec('ReplaceMe')
+	beforeEach(() => mockExec.reset())
 
 	let api: PythonEnvironmentApi
+	let exe: HatchExecutableTracker
 	let envManager: EnvironmentManager
 	before(async function () {
 		this.timeout(50_000)
@@ -65,23 +74,50 @@ describe('Env Manager', () => {
 		assert.ok(api, 'Evironments extension API not available')
 		const ext = await getExtApi(EXTENSION_ID, 20_000)
 		assert.ok(ext.envManager, 'Hatch extension API not available')
-		ext.exe.exec = exec
+		exe = ext.exe
 		envManager = ext.envManager
 	})
 
-	it('should return environments', async () => {
-		await using dir = await tmpdir('hatch-')
-		api.addPythonProject({ name: 'test', uri: dir.uri })
+	for (const value of [
+		{
+			name: 'mock',
+			exec: mockExec,
+			setup(): undefined {
+				mockExec.reset(
+					[
+						['env', 'show', '--json'],
+						{ mockenv: { type: 'virtual' } },
+					],
+					[['env', 'find', 'mockenv'], 'mockpath\n'],
+				)
+			},
+		},
+		{
+			name: 'real',
+			exec: execFile,
+			async setup() {
+				const conf =
+					vscode.workspace.getConfiguration(EXE_CONFIG_SECTION)
+				const old = await conf.get<string>(EXE_CONFIG_SETTING)
+				await conf.update(EXE_CONFIG_SETTING, '')
+				return {
+					[Symbol.asyncDispose]: () =>
+						conf.update(EXE_CONFIG_SETTING, old),
+				}
+			},
+		},
+	])
+		it(`should return environments ${value.name}`, async () => {
+			exe.exec = value.exec
+			await using dir = await tmpdir('hatch-')
+			api.addPythonProject({ name: 'test', uri: dir.uri })
 
-		exec.reset(
-			[['env', 'show', '--json'], { mockenv: { type: 'virtual' } }],
-			[['env', 'find', 'mockenv'], 'mockpath\n'],
-		)
-		//This gets called automatically: await envManager.refresh(dir.uri)
-		const envs = await envManager.getEnvironments(dir.uri)
+			await using _ = await value.setup()
+			await envManager.refresh(dir.uri)
+			const envs = await envManager.getEnvironments(dir.uri)
 
-		assert.ok(envs.length > 0, 'No environments found')
-		assert.equal(envs[0].name, 'mockenv')
-		assert.equal(envs[0].sysPrefix, 'mockpath')
-	})
+			assert.ok(envs.length > 0, 'No environments found')
+			assert.equal(envs[0].name, 'mockenv')
+			assert.equal(envs[0].sysPrefix, 'mockpath')
+		})
 })
