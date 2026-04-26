@@ -16,10 +16,8 @@ export async function activate(context: ExtensionContext): Promise<Api> {
 	const log = window.createOutputChannel('Hatch', { log: true })
 	context.subscriptions.push(log, registerLogger(log))
 
-	const [exe, api] = await Promise.all([
-		HatchExecutableTracker.create(log),
-		getEnvExtApi(),
-	])
+	const exe = new HatchExecutableTracker(log)
+	const api = await getEnvExtApi()
 	setWorkspacePersistentState(context)
 	const envManager = new HatchEnvManager(api, exe, log)
 	const pkgManager = new HatchPackageManager(api, exe, log)
