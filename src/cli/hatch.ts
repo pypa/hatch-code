@@ -7,6 +7,7 @@ export interface HatchEnvInfo {
 	projectPath: string
 }
 
+/** @public */ // this is implicitly exported by the above
 export interface HatchEnvConf {
 	installer: 'uv' | 'pip'
 	type: 'virtual'
