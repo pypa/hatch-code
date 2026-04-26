@@ -338,26 +338,22 @@ export class HatchEnvManager implements EnvironmentManager {
 	}
 
 	async #getHatchEnvs(projectPath: string): Promise<HatchEnvironment[]> {
+		const hatchExe = await this.#hatch.executable
 		const envs = await this.#hatch.getEnvs(projectPath)
-		return envs.map((e) => this.#hatch2pythonEnv(e))
+		return envs.map((e) => this.#hatch2pythonEnv(hatchExe, e))
 	}
 
-	#hatch2pythonEnv({
-		name,
-		path,
-		conf,
-		projectPath,
-	}: HatchEnvInfo): HatchEnvironment {
+	#hatch2pythonEnv(
+		executable: string,
+		{ name, path, conf, projectPath }: HatchEnvInfo,
+	): HatchEnvironment {
 		const shellActivation: Map<string, PythonCommandRunConfiguration[]> =
 			new Map()
 		const shellDeactivation: Map<string, PythonCommandRunConfiguration[]> =
 			new Map()
 
 		shellActivation.set('unknown', [
-			{
-				executable: this.#hatch.executable,
-				args: [`--env=${name}`, 'shell'],
-			},
+			{ executable, args: [`--env=${name}`, 'shell'] },
 		])
 		shellDeactivation.set('unknown', [{ executable: 'exit' }])
 
