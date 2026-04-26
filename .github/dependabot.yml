@@ -13,3 +13,7 @@ updates:
         patterns:
           - '@vscode/vsce'
           - '@secretlint/*'
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
