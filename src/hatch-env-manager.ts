@@ -379,6 +379,7 @@ export class HatchEnvManager implements EnvironmentManager {
 		return {
 			...envInfo,
 			envId: { id: path, managerId },
+			iconPath: new ThemeIcon('hatch-logo'),
 			hatch: { name, path, conf, projectPath },
 		}
 	}
