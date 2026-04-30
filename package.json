@@ -86,7 +86,7 @@
 		"knip": "^6.9.0",
 		"lint-staged": "^16.4.0",
 		"mocha": "^11.7.5",
-		"rolldown": "^1.0.0-rc.17",
+		"rolldown": "^1.0.0-rc.18",
 		"typescript": "^6.0.3"
 	},
 	"packageManager": "yarn@4.14.1",
