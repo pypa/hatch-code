@@ -947,12 +947,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/secretlint-formatter-sarif@npm:^12.3.1":
-  version: 12.3.1
-  resolution: "@secretlint/secretlint-formatter-sarif@npm:12.3.1"
+"@secretlint/secretlint-formatter-sarif@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "@secretlint/secretlint-formatter-sarif@npm:13.0.0"
   dependencies:
     node-sarif-builder: "npm:^4.1.0"
-  checksum: 10/4696553e8659298e9b0410d086f6b1d7ca4141694ee8aac27cb1101f8d9806d90df43f60b052f9c7331ae5527b6c86921d33397645f685de5c42f53201631a57
+  checksum: 10/71e2ec61062ae6400c709983bef2aa5c3a56d94d25487a977c30d4070187244252400ec42d7f8beb029def6e7ba27e6c6e2df250735d31d2c75bcec8b949ab03
   languageName: node
   linkType: hard
 
@@ -965,12 +965,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/secretlint-rule-no-dotenv@npm:^12.3.1":
-  version: 12.3.1
-  resolution: "@secretlint/secretlint-rule-no-dotenv@npm:12.3.1"
+"@secretlint/secretlint-rule-no-dotenv@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "@secretlint/secretlint-rule-no-dotenv@npm:13.0.0"
   dependencies:
-    "@secretlint/types": "npm:12.3.1"
-  checksum: 10/c72e1cddd7d21fe322d15cff25d280c20724ccbc23037eff63c291b050d024fd208c01945504a7667a2ba85bd3873ca187ab5d629cba3f4253d1c7e23f39be91
+    "@secretlint/types": "npm:13.0.0"
+  checksum: 10/91011e7fb3a279b03ca122003fc363f1ce77a8b367359626db3688d35c41b92556f4bfc94205ca15a275c0b9f93e1b6537554ce119929331aed2e91e952d347b
   languageName: node
   linkType: hard
 
@@ -981,10 +981,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/secretlint-rule-preset-recommend@npm:^12.3.1":
-  version: 12.3.1
-  resolution: "@secretlint/secretlint-rule-preset-recommend@npm:12.3.1"
-  checksum: 10/9bc379e700346567b5b0e14bce118a349dee9e3b6ff103a40e10c483e66cd222918f5d9c48d390e871085b763129ced96f28145e6084fa5d131da35713df0b72
+"@secretlint/secretlint-rule-preset-recommend@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "@secretlint/secretlint-rule-preset-recommend@npm:13.0.0"
+  checksum: 10/22da2976edc25368ac4fb0b36d716b31eaf05f1a3ce598172bffadd1939dc5e521031074018b4f6f0caf9ff5634f16caae7500fb7168c31b3bcf3cb02ad78726
   languageName: node
   linkType: hard
 
@@ -998,10 +998,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@secretlint/types@npm:12.3.1":
-  version: 12.3.1
-  resolution: "@secretlint/types@npm:12.3.1"
-  checksum: 10/7e4c7b8b565f2966d64ac2877336db8dc72bfc9eae5f835ecff01aeb173c2d179ae1adadd31b1ffd713700654e5780fb8718cdb8a2c3956720be328796a596d4
+"@secretlint/types@npm:13.0.0":
+  version: 13.0.0
+  resolution: "@secretlint/types@npm:13.0.0"
+  checksum: 10/33c7c032fd5c344aa14bfc9451a1f4b6d66a1bdfac5efc0c8839e99629a9bfba7e0e456957e1b20c0f2fb52480c3bbfdadd7b6bcec60351cd562d613ce82f610
   languageName: node
   linkType: hard
 
@@ -2776,9 +2776,9 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:^2.4.14"
     "@rollup/plugin-swc": "npm:^0.4.0"
-    "@secretlint/secretlint-formatter-sarif": "npm:^12.3.1"
-    "@secretlint/secretlint-rule-no-dotenv": "npm:^12.3.1"
-    "@secretlint/secretlint-rule-preset-recommend": "npm:^12.3.1"
+    "@secretlint/secretlint-formatter-sarif": "npm:^13.0.0"
+    "@secretlint/secretlint-rule-no-dotenv": "npm:^13.0.0"
+    "@secretlint/secretlint-rule-preset-recommend": "npm:^13.0.0"
     "@swc-node/register": "npm:^1.11.1"
     "@swc/core": "npm:^1.15.33"
     "@types/mocha": "npm:^10.0.10"
