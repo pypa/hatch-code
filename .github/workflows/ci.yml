@@ -1,9 +1,15 @@
 name: CI
+
 on:
+  release:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Node.js ${{ matrix.node-version }}
@@ -14,9 +20,15 @@ jobs:
         node-version:
           - '24'
     steps:
-      - uses: actions/checkout@v6
+      - name: Clone repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Check GH actions
+        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e # v0.5.3
       - run: corepack enable
-      - uses: actions/setup-node@v6
+      - name: Install Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: yarn
@@ -24,12 +36,43 @@ jobs:
       - run: yarn lint
       - run: xvfb-run -a yarn test
       - run: yarn vsce-package
+      - name: Validate package version matches git tag
+        if: github.event_name == 'release'
+        run: |
+          PACKAGE_VERSION=$(jq -r .version package.json)
+          if [ "$GITHUB_REF_NAME" != "v$PACKAGE_VERSION" ]; then
+            echo "Error: Tag version ($TAG_VERSION) does not match package.json version (v$PACKAGE_VERSION)"
+            exit 1
+          fi
+      - name: Upload VSIX
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: github.event_name == 'release'
+        with:
+          name: vsix
+          path: '*.vsix'
+  release:
+    if: github.event_name == 'release'
+    needs:
+      - test
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download VSIX
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: vsix
+      - name: Install Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 'lts/*'
+      - run: gh release upload "$GITHUB_REF_NAME" *.vsix
+      - run: npx vsce publish --pat ${{ secrets.MARKETPLACE_TOKEN }} -i *.vsix
   check:
     if: always()
     needs:
       - test
     runs-on: ubuntu-latest
     steps:
-      - uses: re-actors/alls-green@release/v1
+      - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
         with:
           jobs: ${{ toJSON(needs) }}

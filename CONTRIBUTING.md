@@ -21,3 +21,15 @@ The scripts in `packagage.json` are used to manage this project.
 - replace `assets/hatch-logo.woff2`
 
 (The logo.png is a copy of the regular Hatch logo, resized to 128px.)
+
+## CI/CD tokens
+
+To update the `MARKETPLACE_TOKEN` secret,
+we can follow the [“publishing extensions” tutorial](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
+
+Azure is weird, so in order to create an organization-independent PAT to publish extensions to the marketplace,
+one still needs access to an organization.
+
+I personally have access to the `scverse` org so I’ll use that:
+[token settings](https://dev.azure.com/scverse/_usersSettings/tokens) (Select “Access scope: **All accessible organizations**” in the filter list)
+
