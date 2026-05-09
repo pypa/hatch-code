@@ -1,7 +1,7 @@
 export const HATCH_ID = 'hatch'
 export const HATCH_NAME = 'Hatch'
 
-export const EXTENSION_ID = 'flying-sheep.hatch'
+export const EXTENSION_ID = 'pypa.hatch'
 export const HATCH_MANAGER_ID = `${EXTENSION_ID}:hatch`
 
 export const EXE_CONFIG_SECTION = 'hatch' // dotted section name
