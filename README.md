@@ -17,9 +17,8 @@ To make use of it, make sure your user settings contain `"python.useEnvironments
 [`installer`]: https://hatch.pypa.io/latest/how-to/environment/select-installer/
 
 ## Extension Settings
-TODO
+- `hatch.executable`: path to the `hatch` executable (supports `~` expansion). Defaults to the output of `which hatch`.
 
 ## Limitations
 - It’s pretty unclear which environments exist on disk and which don’t
 - We list internal envs that users don’t usually interact with, such as `hatch-uv` and `hatch-build`
-- [Terminal activation is slow](https://github.com/microsoft/vscode-python-environments/issues/1391)
