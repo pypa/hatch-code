@@ -47,7 +47,7 @@
 			}
 		}
 	},
-	"main": "./dist/flying-sheep.hatch/extension.js",
+	"main": "./dist/extension.js",
 	"scripts": {
 		"postinstall": "concurrently -c auto -n husky,sync \"$npm_execpath postinstall:husky\" \"$npm_execpath sync\"",
 		"postinstall:husky": "husky",
@@ -60,7 +60,7 @@
 		"lint:deps": "knip --use-tsconfig-files",
 		"test": "$npm_execpath run build && vscode-test",
 		"vscode:prepublish": "$npm_execpath run sync && $npm_execpath run build",
-		"vsce-package": "vsce package --yarn --no-dependencies -o flying-sheep.hatch.vsix"
+		"vsce-package": "vsce package --yarn --no-dependencies"
 	},
 	"lint-staged": {
 		"*": "biome check --no-errors-on-unmatched --files-ignore-unknown=true --write"
