@@ -6,6 +6,7 @@
 .yarn/**
 assets/*.fig
 src/**
+test/**
 .gitignore
 *.yaml
 *.yml

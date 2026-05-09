@@ -9,6 +9,7 @@ import {
 } from 'vscode'
 import which from 'which'
 import { EXE_CONFIG_SECTION, EXE_CONFIG_SETTING } from '../common/constants.js'
+import { createDeferred, type Deferred } from '../common/deferred.js'
 import { traceError } from '../common/logging.js'
 import execFile, { type ExecFile } from './exec-file.js'
 import type { CreateEnvOptions, HatchEnvInfo } from './hatch.js'
@@ -46,42 +47,27 @@ function suggestExeConfig<
 }
 
 export class HatchExecutableTracker {
-	#executable: string
+	#executable: Deferred<string>
 	#configChangeListener: Disposable
-	private constructor(
-		executable: string,
+	constructor(
 		readonly log: LogOutputChannel,
 		public exec: ExecFile = execFile,
 	) {
-		this.#executable = executable
+		this.#executable = createDeferred()
 		this.#configChangeListener = workspace.onDidChangeConfiguration((e) =>
 			this.#handleConfigChange(e),
 		)
 	}
 
-	static async create(
-		log: LogOutputChannel,
-		exec?: ExecFile | undefined,
-	): Promise<HatchExecutableTracker> {
-		const executable = await getHatch()
-		return new HatchExecutableTracker(executable, log, exec)
-	}
-
-	get executable(): string {
-		return this.#executable
-	}
-
-	get #hatch(): Hatch {
-		return new Hatch(this.#executable, this.exec)
-	}
-
-	get #inst(): Installer {
-		return new Installer(this.#executable, this.exec)
+	async #initialize(): Promise<void> {
+		if (!this.#executable.completed) {
+			this.#executable.resolve(await getHatch())
+		}
 	}
 
 	async #handleConfigChange(e: ConfigurationChangeEvent): Promise<void> {
 		if (e.affectsConfiguration(EXE_CONFIG_KEY)) {
-			this.#executable = await getHatch()
+			this.#executable.resolve(await getHatch())
 		}
 	}
 
@@ -89,40 +75,55 @@ export class HatchExecutableTracker {
 		this.#configChangeListener.dispose()
 	}
 
-	@suggestExeConfig
-	getEnvs(projectPath: string): Promise<HatchEnvInfo[]> {
-		return this.#hatch.getEnvs(projectPath)
+	get executable(): Promise<string> {
+		return this.#initialize().then(() => this.#executable.promise)
 	}
-	@suggestExeConfig
-	findEnv(env: HatchEnvInfo): Promise<string> {
-		return this.#hatch.findEnv(env)
+
+	get #hatch(): Promise<Hatch> {
+		return this.executable.then((e) => new Hatch(e, this.exec))
 	}
-	@suggestExeConfig
-	removeEnv(env: HatchEnvInfo): Promise<void> {
-		return this.#hatch.removeEnv(env)
-	}
-	@suggestExeConfig
-	createEnv(env: HatchEnvInfo, opts?: CreateEnvOptions): Promise<void> {
-		return this.#hatch.createEnv(env, opts)
+
+	get #inst(): Promise<Installer> {
+		return this.executable.then((e) => new Installer(e, this.exec))
 	}
 
 	@suggestExeConfig
-	listPackages(
-		env: HatchEnvInfo,
-	): Promise<{ name: string; version: string }[]> {
-		return this.#inst.listPackages(env)
+	async getEnvs(projectPath: string): Promise<HatchEnvInfo[]> {
+		return (await this.#hatch).getEnvs(projectPath)
 	}
 	@suggestExeConfig
-	installPackages(
+	async findEnv(env: HatchEnvInfo): Promise<string> {
+		return (await this.#hatch).findEnv(env)
+	}
+	@suggestExeConfig
+	async removeEnv(env: HatchEnvInfo): Promise<void> {
+		return (await this.#hatch).removeEnv(env)
+	}
+	@suggestExeConfig
+	async createEnv(env: HatchEnvInfo, opts?: CreateEnvOptions): Promise<void> {
+		return (await this.#hatch).createEnv(env, opts)
+	}
+
+	@suggestExeConfig
+	async listPackages(
+		env: HatchEnvInfo,
+	): Promise<{ name: string; version: string }[]> {
+		return (await this.#inst).listPackages(env)
+	}
+	@suggestExeConfig
+	async installPackages(
 		env: HatchEnvInfo,
 		packages: string[],
 		opts: InstallOptions = {},
 	): Promise<void> {
-		return this.#inst.installPackages(env, packages, opts)
+		return (await this.#inst).installPackages(env, packages, opts)
 	}
 	@suggestExeConfig
-	uninstallPackages(env: HatchEnvInfo, packages: string[]): Promise<void> {
-		return this.#inst.uninstallPackages(env, packages)
+	async uninstallPackages(
+		env: HatchEnvInfo,
+		packages: string[],
+	): Promise<void> {
+		return (await this.#inst).uninstallPackages(env, packages)
 	}
 }
 
