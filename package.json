@@ -13,9 +13,9 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/flying-sheep/hatch-code.git"
+		"url": "https://github.com/pypa/hatch-code.git"
 	},
-	"publisher": "flying-sheep",
+	"publisher": "pypa",
 	"icon": "./assets/logo.webp",
 	"extensionDependencies": [
 		"ms-python.vscode-python-envs"
