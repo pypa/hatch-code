@@ -1,3 +1,4 @@
+import { homedir } from 'node:os'
 import paths from 'node:path'
 import {
 	EventEmitter,
@@ -344,7 +345,7 @@ export class HatchEnvManager implements EnvironmentManager {
 	}
 
 	#hatch2pythonEnv(
-		executable: string,
+		hatchBin: string,
 		{ name, path, conf, projectPath }: HatchEnvInfo,
 	): HatchEnvironment {
 		const shellActivation: Map<string, PythonCommandRunConfiguration[]> =
@@ -353,21 +354,23 @@ export class HatchEnvManager implements EnvironmentManager {
 			new Map()
 
 		shellActivation.set('unknown', [
-			{ executable, args: [`--env=${name}`, 'shell'] },
+			{ executable: hatchBin, args: [`--env=${name}`, 'shell'] },
 		])
 		shellDeactivation.set('unknown', [{ executable: 'exit' }])
+
+		const pyBin = envBin(path, 'python')
 
 		const envInfo: PythonEnvironmentInfo = {
 			name,
 			description: conf.description,
 			displayName: name,
-			displayPath: path,
+			displayPath: path.replace(homedir(), '~'),
 			tooltip: path,
-			environmentPath: Uri.file(path),
+			environmentPath: Uri.file(pyBin),
 			sysPrefix: path,
 			version: '1', // TODO
 			execInfo: {
-				run: { executable: envBin(path, 'python') },
+				run: { executable: pyBin },
 				shellActivation,
 				shellDeactivation,
 			},
