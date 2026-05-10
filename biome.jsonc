@@ -30,7 +30,6 @@
 				"useAwaitThenable": "warn",
 			},
 		},
-		"includes": ["**", "!**/src/vscode-python-environments/*.ts"],
 	},
 	"javascript": {
 		"formatter": {

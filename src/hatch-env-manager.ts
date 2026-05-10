@@ -1,5 +1,20 @@
 import paths from 'node:path'
 import {
+	type DidChangeEnvironmentEventArgs,
+	type DidChangeEnvironmentsEventArgs,
+	EnvironmentChangeKind,
+	type EnvironmentManager,
+	type GetEnvironmentScope,
+	type GetEnvironmentsScope,
+	type PythonCommandRunConfiguration,
+	type PythonEnvironment,
+	type PythonEnvironmentApi,
+	type PythonEnvironmentInfo,
+	type RefreshEnvironmentsScope,
+	type ResolveEnvironmentContext,
+	type SetEnvironmentScope,
+} from '@vscode/python-environments'
+import {
 	EventEmitter,
 	type LogOutputChannel,
 	ProgressLocation,
@@ -19,21 +34,6 @@ import {
 	setGlobalEnvId,
 	setProjectEnvId,
 } from './utils.js'
-import {
-	type DidChangeEnvironmentEventArgs,
-	type DidChangeEnvironmentsEventArgs,
-	EnvironmentChangeKind,
-	type EnvironmentManager,
-	type GetEnvironmentScope,
-	type GetEnvironmentsScope,
-	type PythonCommandRunConfiguration,
-	type PythonEnvironment,
-	type PythonEnvironmentApi,
-	type PythonEnvironmentInfo,
-	type RefreshEnvironmentsScope,
-	type ResolveEnvironmentContext,
-	type SetEnvironmentScope,
-} from './vscode-python-environments/index.js'
 
 interface HatchEnvironment extends PythonEnvironment {
 	hatch: HatchEnvInfo

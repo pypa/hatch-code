@@ -4,9 +4,6 @@
 /.husky/_/
 /*.vsix
 
-# downloaded resources
-/src/vscode-python-environments/index.ts
-
 # yarn
 /.pnp.*
 /.yarn/*

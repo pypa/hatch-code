@@ -49,9 +49,7 @@
 	},
 	"main": "./dist/extension.js",
 	"scripts": {
-		"postinstall": "concurrently -c auto -n husky,sync \"$npm_execpath postinstall:husky\" \"$npm_execpath sync\"",
-		"postinstall:husky": "husky",
-		"sync": "curl -sf -o src/vscode-python-environments/index.ts -L \"https://github.com/microsoft/vscode-python-environments/raw/refs/heads/main/src/api.ts\"",
+		"postinstall": "husky",
 		"build": "rolldown -c",
 		"watch": "rolldown -cw",
 		"lint": "concurrently -c auto -n types,check,deps \"$npm_execpath lint:types\" \"$npm_execpath lint:check\" \"$npm_execpath lint:deps\"",
@@ -59,7 +57,7 @@
 		"lint:check": "biome check --write --error-on-warnings .",
 		"lint:deps": "knip --use-tsconfig-files",
 		"test": "$npm_execpath run build && vscode-test",
-		"vscode:prepublish": "$npm_execpath run sync && $npm_execpath run build",
+		"vscode:prepublish": "$npm_execpath run build",
 		"vsce-package": "vsce package --yarn --no-dependencies"
 	},
 	"lint-staged": {
@@ -91,6 +89,7 @@
 	},
 	"packageManager": "yarn@4.14.1",
 	"dependencies": {
+		"@vscode/python-environments": "^1.0.0",
 		"untildify": "^6.0.0",
 		"which": "^6.0.1"
 	}

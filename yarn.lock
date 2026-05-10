@@ -1339,6 +1339,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vscode/python-environments@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@vscode/python-environments@npm:1.0.0"
+  checksum: 10/ad953e678f66f58b9522bb4e48628801b21cdc473663c58cd205b762201ed4abbb401ee92a6ae35aa14251a71c154c8808a9a0fca7bf4fa1eccd1d3a53463085
+  languageName: node
+  linkType: hard
+
 "@vscode/test-cli@npm:^0.0.12":
   version: 0.0.12
   resolution: "@vscode/test-cli@npm:0.0.12"
@@ -2778,6 +2785,7 @@ __metadata:
     "@types/node": "npm:25.x"
     "@types/vscode": "npm:1.99.1"
     "@types/which": "npm:^3.0.4"
+    "@vscode/python-environments": "npm:^1.0.0"
     "@vscode/test-cli": "npm:^0.0.12"
     "@vscode/test-electron": "npm:^2.5.2"
     "@vscode/vsce": "npm:^3.9.1"
