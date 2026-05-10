@@ -18,6 +18,7 @@ export default defineConfig({
 			swc({
 				swc: {
 					jsc: {
+						target: 'esnext',
 						parser: { decorators: true, syntax: 'typescript' },
 						transform: { decoratorVersion: '2023-11' },
 					},
