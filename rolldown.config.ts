@@ -25,7 +25,7 @@ export default defineConfig({
 				},
 			}),
 			// Only run this transform if the file contains a decorator.
-			{ transform: { code: /\w*@/ } },
+			{ transform: { code: /\n\s*@/ } },
 		),
 		// https://github.com/npm/node-which/issues/174
 		esmExternalRequirePlugin({ external: [/^node:/, 'path'] }),
