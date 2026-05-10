@@ -1,12 +1,12 @@
 import * as assert from 'node:assert'
+import type {
+	EnvironmentManager,
+	PythonEnvironmentApi,
+} from '@vscode/python-environments'
 import { before, beforeEach } from 'mocha'
 import * as vscode from 'vscode'
 import { ENVS_EXT_ID, EXTENSION_ID } from '../src/common/constants'
 import type * as extension from '../src/extension'
-import type {
-	EnvironmentManager,
-	PythonEnvironmentApi,
-} from '../src/vscode-python-environments'
 import MockExec from './mock-exec'
 import { tmpdir, waitForCondition } from './test-utils'
 

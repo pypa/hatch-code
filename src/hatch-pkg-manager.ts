@@ -1,4 +1,13 @@
 import {
+	type DidChangePackagesEventArgs,
+	type Package,
+	PackageChangeKind,
+	type PackageManagementOptions,
+	type PackageManager,
+	type PythonEnvironment,
+	type PythonEnvironmentApi,
+} from '@vscode/python-environments'
+import {
 	EventEmitter,
 	type LogOutputChannel,
 	ProgressLocation,
@@ -9,15 +18,6 @@ import type { HatchExecutableTracker } from './cli/index.js'
 import { HATCH_ID, HATCH_NAME } from './common/constants.js'
 import { traceVerbose } from './common/logging.js'
 import { isHatchEnv } from './hatch-env-manager.js'
-import {
-	type DidChangePackagesEventArgs,
-	type Package,
-	PackageChangeKind,
-	type PackageManagementOptions,
-	type PackageManager,
-	type PythonEnvironment,
-	type PythonEnvironmentApi,
-} from './vscode-python-environments/index.js'
 
 export class HatchPackageManager implements PackageManager {
 	readonly name = HATCH_ID

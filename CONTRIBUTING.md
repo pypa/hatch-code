@@ -4,9 +4,8 @@
 
 The scripts in `packagage.json` are used to manage this project.
 
-- running `yarn install` runs the `postinstall` script, which.
-  1. sets up `pre-commit` scripts that run `lint`s (see below) before each `git commit`.
-  2. downloads `src/vscode-python-environments.ts` which isn’t published to npm yet.
+- running `yarn install` runs the `postinstall` script,
+  which sets up `pre-commit` scripts that run `lint`s (see below) before each `git commit`.
 - `watch` and `compile` can be used to compile the TypeScript sources,
   but “Run Extension” in `.vscode/launch.json` also runs `watch` for you.
 - `lint` runs the following:

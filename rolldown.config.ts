@@ -18,13 +18,14 @@ export default defineConfig({
 			swc({
 				swc: {
 					jsc: {
+						target: 'esnext',
 						parser: { decorators: true, syntax: 'typescript' },
 						transform: { decoratorVersion: '2023-11' },
 					},
 				},
 			}),
 			// Only run this transform if the file contains a decorator.
-			{ transform: { code: '@' } },
+			{ transform: { code: /\n\s*@/ } },
 		),
 		// https://github.com/npm/node-which/issues/174
 		esmExternalRequirePlugin({ external: [/^node:/, 'path'] }),

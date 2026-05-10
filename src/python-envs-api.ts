@@ -1,8 +1,8 @@
 // See https://github.com/microsoft/vscode-python-environments/blob/main/examples/README.md#create-your-extension
 
+import type { PythonEnvironmentApi } from '@vscode/python-environments'
 import * as vscode from 'vscode'
 import { ENVS_EXT_ID } from './common/constants.js'
-import type { PythonEnvironmentApi } from './vscode-python-environments/index.js'
 
 let _extApi: PythonEnvironmentApi | undefined
 export async function getEnvExtApi(): Promise<PythonEnvironmentApi> {
