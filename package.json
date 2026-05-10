@@ -9,6 +9,7 @@
 		"vscode": "^1.99.0"
 	},
 	"categories": [
+		"Programming Languages",
 		"Other"
 	],
 	"repository": {
@@ -17,6 +18,10 @@
 	},
 	"publisher": "pypa",
 	"icon": "./assets/logo.webp",
+	"galleryBanner": {
+		"color": "#4051b5",
+		"theme": "dark"
+	},
 	"extensionDependencies": [
 		"ms-python.vscode-python-envs"
 	],
