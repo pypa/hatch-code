@@ -2793,7 +2793,7 @@ __metadata:
     concurrently: "npm:^9.2.1"
     husky: "npm:^9.1.7"
     knip: "npm:^6.12.0"
-    lint-staged: "npm:^17.0.2"
+    lint-staged: "npm:^17.0.4"
     mocha: "npm:^11.7.5"
     rolldown: "npm:^1.0.0-rc.18"
     typescript: "npm:^6.0.3"
@@ -3354,9 +3354,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^17.0.2":
-  version: 17.0.2
-  resolution: "lint-staged@npm:17.0.2"
+"lint-staged@npm:^17.0.4":
+  version: 17.0.5
+  resolution: "lint-staged@npm:17.0.5"
   dependencies:
     listr2: "npm:^10.2.1"
     picomatch: "npm:^4.0.4"
@@ -3368,7 +3368,7 @@ __metadata:
       optional: true
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/640d6e9624dd7fe0dfd78c1bde014156359e440fad4112dd551c22b766088d5072b1f62a57635d33e25e4a07ce740d869ce1e1adba6f4196f13d9475ee4f7cd0
+  checksum: 10/a0bea43689d68ec0bf6a56943884dbdb96b6b49e2677bf80654d802678b2edf9fc65338ca8ef3fc310f245933ea2a809db1ac94431dc445c57a4d49620d9d4da
   languageName: node
   linkType: hard
 
