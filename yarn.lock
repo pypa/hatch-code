@@ -2798,7 +2798,7 @@ __metadata:
     rolldown: "npm:^1.0.0-rc.18"
     typescript: "npm:^6.0.3"
     untildify: "npm:^6.0.0"
-    which: "npm:^6.0.1"
+    which: "npm:^7.0.0"
   languageName: unknown
   linkType: soft
 
@@ -5455,14 +5455,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"which@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "which@npm:6.0.1"
+"which@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "which@npm:7.0.0"
   dependencies:
     isexe: "npm:^4.0.0"
   bin:
     node-which: bin/which.js
-  checksum: 10/dbea77c7d3058bf6c78bf9659d2dce4d2b57d39a15b826b2af6ac2e5a219b99dc8a831b79fdbc453c0598adb4f3f84cf9c2491fd52beb9f5d2dececcad117f68
+  checksum: 10/913a43ac10df37602ba9795a004dd7ab12ba7dd592aca1f08ec333be1fdd6a49bbf119a88c3f8d0ea70eeb6251726e77069251424d73000299a0a840ed000732
   languageName: node
   linkType: hard
 

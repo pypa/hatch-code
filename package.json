@@ -96,6 +96,6 @@
 	"dependencies": {
 		"@vscode/python-environments": "^1.0.0",
 		"untildify": "^6.0.0",
-		"which": "^6.0.1"
+		"which": "^7.0.0"
 	}
 }
