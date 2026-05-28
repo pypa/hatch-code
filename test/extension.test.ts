@@ -96,10 +96,9 @@ describe('Env Manager', () => {
 	it('should implement an env interpreter path command', async () => {
 		await using _ = await testProj()
 		//This gets called automatically: await envManager.refresh(dir.uri)
-		const intp = await vscode.commands.executeCommand(
-			CMD_ENV_INTERPRETER,
-			'mockenv',
-		)
+		const intp = await vscode.commands.executeCommand(CMD_ENV_INTERPRETER, {
+			env: 'mockenv',
+		})
 		assert.equal(intp, 'mockpath/bin/python')
 	})
 })
