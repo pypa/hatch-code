@@ -74,7 +74,7 @@ describe('Env Manager', () => {
 	})
 
 	async function testProj(): ReturnType<typeof tmpdir> {
-		await using dir = await tmpdir('hatch-')
+		const dir = await tmpdir('hatch-')
 		api.addPythonProject({ name: 'test', uri: dir.uri })
 		exec.reset(
 			[['env', 'show', '--json'], { mockenv: { type: 'virtual' } }],
