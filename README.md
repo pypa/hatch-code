@@ -29,20 +29,29 @@ Persistent modifications to the installed packages should be done by editing Hat
       {
         "label": "Build docs",
         "type": "process",
-        "command": "${command:hatch.envInterpreter?[\"docs\"]}",
+        "command": "${input:docsInterpreter}",
         "args": ["-m", "sphinx", "docs", "docs/_build"],
+        "problemMatcher": [],
+      },
+    ],
+    "inputs": [
+      {
+        "id": "docsInterpreter",
+        "type": "command",
+        "command": "hatch.envInterpreter",
+        "args": { "env": "docs" },
       },
     ],
   }
   ```
 
-  When called without arguments, it returns the path to the `default` hatch environment of the currently open workspace.
-  The first parameter is the environment name as reported by Hatch.
-  The second parameter is an explicit workspace folder in case you have multiple workspaces open.
+  The command supports the following `args`:
+  - `env`: name of the environment (defaults to `"default"`)
+  - `workspace`: path to the workspace root (defaults to the first currently open workspace)
 
-  (The syntax for specifying arguments in command Uris is an URL-encoded JSON array that has to be embedded in the `launch.json`/`tasks.json`. Quite cumbersome, but shouldn’t be an issue for common env names.)
+  It can be used without going through `inputs` using just `${command:hatch.envInterpreter}` to always use the `default` environment instead of the currently active one.
 
-[variable substitution]: https://code.visualstudio.com/docs/editor/userdefinedsnippets
+[variable substitution]: https://code.visualstudio.com/docs/reference/variables-reference
 
 ## Extension Settings
 - `hatch.executable`: path to the `hatch` executable (supports `~` expansion). Defaults to the output of `which hatch`.

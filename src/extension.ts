@@ -1,6 +1,6 @@
 import { commands, type ExtensionContext, window } from 'vscode'
 import { HatchExecutableTracker } from './cli/index.js'
-import { getEnvInterpreter } from './commands.js'
+import { type CommandOptions, getEnvInterpreter } from './commands.js'
 import { CMD_ENV_INTERPRETER, EXTENSION_ID } from './common/constants.js'
 import { registerLogger } from './common/logging.js'
 import { setWorkspacePersistentState } from './common/persistent-state.js'
@@ -29,10 +29,8 @@ export async function activate(context: ExtensionContext): Promise<Api> {
 			extensionId: EXTENSION_ID,
 		}),
 		api.registerPackageManager(pkgManager, { extensionId: EXTENSION_ID }),
-		commands.registerCommand(
-			CMD_ENV_INTERPRETER,
-			(env?: string, wsDir?: string) =>
-				getEnvInterpreter(envManager, env, wsDir),
+		commands.registerCommand(CMD_ENV_INTERPRETER, (args?: CommandOptions) =>
+			getEnvInterpreter(envManager, args),
 		),
 	)
 
