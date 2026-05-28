@@ -5,6 +5,7 @@ import type {
 } from '@vscode/python-environments'
 import { before, beforeEach } from 'mocha'
 import * as vscode from 'vscode'
+import type { CommandOptions } from '../src/commands'
 import {
 	CMD_ENV_INTERPRETER,
 	ENVS_EXT_ID,
@@ -98,7 +99,7 @@ describe('Env Manager', () => {
 		//This gets called automatically: await envManager.refresh(dir.uri)
 		const intp = await vscode.commands.executeCommand(CMD_ENV_INTERPRETER, {
 			env: 'mockenv',
-		})
+		} satisfies CommandOptions)
 		assert.equal(intp, 'mockpath/bin/python')
 	})
 })
