@@ -11,8 +11,8 @@ test/**
 *.yaml
 *.yml
 *.jsonc
+*.png
 vsc-extension-quickstart.md
-./*.png
 **/tsconfig.json
 **/*.map
 **/*.ts
