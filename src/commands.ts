@@ -17,6 +17,7 @@ export async function getEnvInterpreter(
 	const workspaceUri = workspaceDir
 		? Uri.file(workspaceDir)
 		: workspace.workspaceFolders?.[0]?.uri
+	await envManager.refresh(workspaceUri)
 	const envs = await envManager.getEnvironments(workspaceUri ?? 'all')
 	return envs.find((e) => e.name === env)?.execInfo.run.executable ?? 'python'
 }

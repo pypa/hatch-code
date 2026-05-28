@@ -73,14 +73,18 @@ describe('Env Manager', () => {
 		envManager = ext.envManager
 	})
 
-	it('should return environments', async () => {
+	async function testProj(): ReturnType<typeof tmpdir> {
 		await using dir = await tmpdir('hatch-')
 		api.addPythonProject({ name: 'test', uri: dir.uri })
-
 		exec.reset(
 			[['env', 'show', '--json'], { mockenv: { type: 'virtual' } }],
 			[['env', 'find', 'mockenv'], 'mockpath\n'],
 		)
+		return dir
+	}
+
+	it('should return environments', async () => {
+		await using dir = await testProj()
 		//This gets called automatically: await envManager.refresh(dir.uri)
 		const envs = await envManager.getEnvironments(dir.uri)
 
@@ -90,14 +94,8 @@ describe('Env Manager', () => {
 	})
 
 	it('should implement an env interpreter path command', async () => {
-		await using dir = await tmpdir('hatch-')
-		api.addPythonProject({ name: 'test', uri: dir.uri })
-
-		exec.reset(
-			[['env', 'show', '--json'], { mockenv: { type: 'virtual' } }],
-			[['env', 'find', 'mockenv'], 'mockpath\n'],
-		)
-
+		await using _ = await testProj()
+		//This gets called automatically: await envManager.refresh(dir.uri)
 		const intp = await vscode.commands.executeCommand(
 			CMD_ENV_INTERPRETER,
 			'mockenv',
