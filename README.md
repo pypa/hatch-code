@@ -28,7 +28,7 @@ Persistent modifications to the installed packages should be done by editing Hat
     "tasks": [
       {
         "type": "process",
-        "program": "${command:hatch.envInterpreter?[\"docs\"]}"`,
+        "program": "${command:hatch.envInterpreter?[\"docs\"]}",
         "args": ["-m", "sphinx", "docs", "docs/_build"],
       },
     ],
