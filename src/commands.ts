@@ -11,8 +11,8 @@ import type { HatchEnvManager } from './hatch-env-manager.js'
  */
 export async function getEnvInterpreter(
 	envManager: HatchEnvManager,
-	env: string,
-	workspaceDir: string | undefined,
+	env: string | undefined = 'default',
+	workspaceDir?: string | undefined,
 ): Promise<string> {
 	const workspaceUri = workspaceDir
 		? Uri.file(workspaceDir)

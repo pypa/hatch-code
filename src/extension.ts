@@ -31,7 +31,7 @@ export async function activate(context: ExtensionContext): Promise<Api> {
 		api.registerPackageManager(pkgManager, { extensionId: EXTENSION_ID }),
 		commands.registerCommand(
 			CMD_ENV_INTERPRETER,
-			(env: string, wsDir?: string) =>
+			(env?: string, wsDir?: string) =>
 				getEnvInterpreter(envManager, env, wsDir),
 		),
 	)
