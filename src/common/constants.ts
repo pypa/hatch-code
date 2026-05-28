@@ -8,3 +8,5 @@ export const EXE_CONFIG_SECTION = 'hatch' // dotted section name
 export const EXE_CONFIG_SETTING = 'executable' // last element
 
 export const ENVS_EXT_ID = 'ms-python.vscode-python-envs'
+
+export const CMD_ENV_INTERPRETER = 'hatch.envInterpreter'
