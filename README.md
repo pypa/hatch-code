@@ -8,11 +8,13 @@ To make use of it, make sure your user settings contain `"python.useEnvironments
 
 ## Features
 - List all configured [Hatch environments]
-- Provide controls to set them as active environment for your project, activate them in a terminal, and remove them[^1]
-- Temporarily[^2] modify an environment’s packages using the configured [`installer`]
+- Provide controls to set them as active environment for your project, activate them in a terminal, and delete them from disk
+- Temporarily modify an environment’s packages using the configured [`installer`]
 
-[^1]: “remove” in this context means deleting it on disk, it will stay listed and will be recreated when interacting with it.
-[^2]: since many actions currently use `hatch run` and therefore sync the environment, e.g. removing a package that is pulled in as a dependency will not persist for long.
+![screenshot](./screenshot.png)
+
+Since many actions currently use `hatch run` and therefore sync the environment, temporary package changes can be quickly undone, especially removing packages installed as dependencies.
+Persistent modifications to the installed packages should be done by editing Hatch’s `envs` configuration.
 
 [`installer`]: https://hatch.pypa.io/latest/how-to/environment/select-installer/
 
