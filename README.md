@@ -20,7 +20,7 @@ Persistent modifications to the installed packages should be done by editing Hat
 [`installer`]: https://hatch.pypa.io/latest/how-to/environment/select-installer/
 
 ## Commands
-- `hatch.envInterpreter`: not an interactive command, but rather for use in `launch.json` or `tasks.json` via [variable substitution], e.g. for `program` in `tasks.json` or `python` in `launch.json`:
+- `hatch.envInterpreter`: not an interactive command, but rather for use in `launch.json` or `tasks.json` via [variable substitution], e.g. for `command` in `tasks.json` or `python` in `launch.json`:
 
   ```jsonc
   {  // tasks.json
@@ -29,7 +29,7 @@ Persistent modifications to the installed packages should be done by editing Hat
       {
         "label": "Build docs",
         "type": "process",
-        "program": "${command:hatch.envInterpreter?[\"docs\"]}",
+        "command": "${command:hatch.envInterpreter?[\"docs\"]}",
         "args": ["-m", "sphinx", "docs", "docs/_build"],
       },
     ],
