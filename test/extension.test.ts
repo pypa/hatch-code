@@ -5,7 +5,12 @@ import type {
 } from '@vscode/python-environments'
 import { before, beforeEach } from 'mocha'
 import * as vscode from 'vscode'
-import { ENVS_EXT_ID, EXTENSION_ID } from '../src/common/constants'
+import type { CommandOptions } from '../src/commands'
+import {
+	CMD_ENV_INTERPRETER,
+	ENVS_EXT_ID,
+	EXTENSION_ID,
+} from '../src/common/constants'
 import type * as extension from '../src/extension'
 import MockExec from './mock-exec'
 import { tmpdir, waitForCondition } from './test-utils'
@@ -69,19 +74,32 @@ describe('Env Manager', () => {
 		envManager = ext.envManager
 	})
 
-	it('should return environments', async () => {
-		await using dir = await tmpdir('hatch-')
+	async function testProj(): ReturnType<typeof tmpdir> {
+		const dir = await tmpdir('hatch-')
 		api.addPythonProject({ name: 'test', uri: dir.uri })
-
 		exec.reset(
 			[['env', 'show', '--json'], { mockenv: { type: 'virtual' } }],
 			[['env', 'find', 'mockenv'], 'mockpath\n'],
 		)
+		return dir
+	}
+
+	it('should return environments', async () => {
+		await using dir = await testProj()
 		//This gets called automatically: await envManager.refresh(dir.uri)
 		const envs = await envManager.getEnvironments(dir.uri)
 
 		assert.ok(envs.length > 0, 'No environments found')
 		assert.equal(envs[0].name, 'mockenv')
 		assert.equal(envs[0].sysPrefix, 'mockpath')
+	})
+
+	it('should implement an env interpreter path command', async () => {
+		await using _ = await testProj()
+		//This gets called automatically: await envManager.refresh(dir.uri)
+		const intp = await vscode.commands.executeCommand(CMD_ENV_INTERPRETER, {
+			env: 'mockenv',
+		} satisfies CommandOptions)
+		assert.equal(intp, 'mockpath/bin/python')
 	})
 })

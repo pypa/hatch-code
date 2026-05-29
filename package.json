@@ -42,6 +42,13 @@
 				}
 			}
 		},
+		"commands": [
+			{
+				"command": "hatch.envInterpreter",
+				"title": "Hatch: Get an environment’s interpreter path",
+				"enablement": false
+			}
+		],
 		"icons": {
 			"hatch-logo": {
 				"description": "Hatch Logo",

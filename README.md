@@ -10,6 +10,7 @@ To make use of it, make sure your user settings contain `"python.useEnvironments
 - List all configured [Hatch environments]
 - Provide controls to set them as active environment for your project, activate them in a terminal, and delete them from disk
 - Temporarily modify an environment’s packages using the configured [`installer`]
+- Define a `hatch.envInterpreter` command for use in `launch.json` or `tasks.json`, see [below](#commands)
 
 ![screenshot](./screenshot.png)
 
@@ -17,6 +18,40 @@ Since many actions currently use `hatch run` and therefore sync the environment,
 Persistent modifications to the installed packages should be done by editing Hatch’s `envs` configuration.
 
 [`installer`]: https://hatch.pypa.io/latest/how-to/environment/select-installer/
+
+## Commands
+- `hatch.envInterpreter`: not an interactive command, but rather for use in `launch.json` or `tasks.json` via [variable substitution], e.g. for `command` in `tasks.json` or `python` in `launch.json`:
+
+  ```jsonc
+  {  // tasks.json
+    "version": "0.2.0",
+    "tasks": [
+      {
+        "label": "Build docs",
+        "type": "process",
+        "command": "${input:docsInterpreter}",
+        "args": ["-m", "sphinx", "docs", "docs/_build"],
+        "problemMatcher": [],
+      },
+    ],
+    "inputs": [
+      {
+        "id": "docsInterpreter",
+        "type": "command",
+        "command": "hatch.envInterpreter",
+        "args": { "env": "docs" },
+      },
+    ],
+  }
+  ```
+
+  The command supports the following `args`:
+  - `env`: name of the environment (defaults to `"default"`)
+  - `workspace`: path to the workspace root (defaults to the first currently open workspace)
+
+  It can be used without going through `inputs` using just `${command:hatch.envInterpreter}` to always use the `default` environment instead of the currently active one.
+
+[variable substitution]: https://code.visualstudio.com/docs/reference/variables-reference
 
 ## Extension Settings
 - `hatch.executable`: path to the `hatch` executable (supports `~` expansion). Defaults to the output of `which hatch`.
