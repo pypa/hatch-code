@@ -4,6 +4,13 @@ All notable changes to the "hatch" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.0](https://github.com/pypa/hatch-code/compare/v0.1.2...v0.2.0) (2026-05-29)
+
+
+### Features
+
+* add command to get env interpreter path ([#191](https://github.com/pypa/hatch-code/issues/191)) ([833a99a](https://github.com/pypa/hatch-code/commit/833a99aa6eb4b2a54aeee6734d3c133901806b44))
+
 ## [Unreleased]
 
 ## [0.1.2]
