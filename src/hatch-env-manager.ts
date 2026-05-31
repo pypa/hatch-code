@@ -352,8 +352,13 @@ export class HatchEnvManager implements EnvironmentManager {
 		const shellDeactivation: Map<string, PythonCommandRunConfiguration[]> =
 			new Map()
 
-		shellActivation.set('unknown', [
-			{ executable, args: [`--env=${name}`, 'shell'] },
+		const args = ['--env', name, 'shell']
+		shellActivation.set('unknown', [{ executable, args }])
+		// PowerShell parses a leading quoted string as an expression, so a quoted
+		// executable path (e.g. under "C:\Program Files") must be invoked with the
+		// call operator `&`. A lone `&` is left unquoted by the host's quoting.
+		shellActivation.set('pwsh', [
+			{ executable: '&', args: [executable, ...args] },
 		])
 		shellDeactivation.set('unknown', [{ executable: 'exit' }])
 
