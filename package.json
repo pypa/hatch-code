@@ -46,7 +46,7 @@
 			{
 				"command": "hatch.envInterpreter",
 				"title": "Hatch: Get an environment’s interpreter path",
-				"enablement": false
+				"enablement": "false"
 			}
 		],
 		"icons": {
