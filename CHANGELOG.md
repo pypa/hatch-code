@@ -4,6 +4,14 @@ All notable changes to the "hatch" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.1](https://github.com/pypa/hatch-code/compare/v0.2.0...v0.2.1) (2026-06-01)
+
+
+### Bug Fixes
+
+* make hatch.envInterpreter enablement a valid when-clause ([#195](https://github.com/pypa/hatch-code/issues/195)) ([68287b0](https://github.com/pypa/hatch-code/commit/68287b0343649b510ecb44f62d3762daa4942311))
+* prepend PowerShell call operator when activating environments ([#197](https://github.com/pypa/hatch-code/issues/197)) ([682a443](https://github.com/pypa/hatch-code/commit/682a4431f56ec5ddf1e6655a0c04c8c268bf4c51))
+
 ## [0.2.0](https://github.com/pypa/hatch-code/compare/v0.1.2...v0.2.0) (2026-05-29)
 
 ### Features
