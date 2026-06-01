@@ -86,7 +86,7 @@ jobs:
       - run: gh release upload "$GITHUB_REF_NAME" *.vsix
         env:
           GH_TOKEN: ${{ github.token }}
-      - run: npx vsce publish --pat ${{ secrets.MARKETPLACE_TOKEN }} -i *.vsix
+      - run: npx @vscode/vsce publish --pat ${{ secrets.MARKETPLACE_TOKEN }} -i *.vsix
   check:
     if: always()
     needs:
