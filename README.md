@@ -23,23 +23,23 @@ Persistent modifications to the installed packages should be done by editing Hat
 - `hatch.envInterpreter`: not an interactive command, but rather for use in `launch.json` or `tasks.json` via [variable substitution], e.g. for `command` in `tasks.json` or `python` in `launch.json`:
 
   ```jsonc
-  {  // tasks.json
+  {  // launch.json
     "version": "0.2.0",
-    "tasks": [
+    "configurations": [
       {
-        "label": "Build docs",
-        "type": "process",
-        "command": "${input:docsInterpreter}",
-        "args": ["-m", "sphinx", "docs", "docs/_build"],
-        "problemMatcher": [],
+        "name": "Python: Debug script",
+        "type": "debugpy",
+        "request": "launch",
+        "python": "${input:scriptsInterpreter}",
+        "program": "${file}",
       },
     ],
     "inputs": [
       {
-        "id": "docsInterpreter",
+        "id": "scriptsInterpreter",
         "type": "command",
         "command": "hatch.envInterpreter",
-        "args": { "env": "docs" },
+        "args": { "env": "scripts" },
       },
     ],
   }
