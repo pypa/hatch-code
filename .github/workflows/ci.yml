@@ -87,6 +87,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
       - run: npx @vscode/vsce publish --pat ${{ secrets.MARKETPLACE_TOKEN }} -i *.vsix
+      - run: npx ovsx publish --trusted-publishing *.vsix
   check:
     if: always()
     needs:
