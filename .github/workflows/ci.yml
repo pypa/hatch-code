@@ -38,11 +38,13 @@ jobs:
         with:
           persist-credentials: false
       - run: corepack enable
-      - name: Install Node.js
+      # zizmor can't evaluate the `cache` expression below; release runs never cache
+      - name: Install Node.js # zizmor: ignore[cache-poisoning]
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
+          cache: ${{ github.event_name != 'release' && 'yarn' || '' }}
+          package-manager-cache: false
       - run: yarn install --immutable
       - run: yarn lint
       - run: xvfb-run -a yarn test
@@ -52,7 +54,7 @@ jobs:
         run: |
           PACKAGE_VERSION=$(jq -r .version package.json)
           if [ "$GITHUB_REF_NAME" != "v$PACKAGE_VERSION" ]; then
-            echo "Error: Tag version ($TAG_VERSION) does not match package.json version (v$PACKAGE_VERSION)"
+            echo "Error: Tag version ($GITHUB_REF_NAME) does not match package.json version (v$PACKAGE_VERSION)"
             exit 1
           fi
       - name: Upload VSIX
@@ -83,6 +85,7 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 'lts/*'
+          package-manager-cache: false
       - run: gh release upload "$GITHUB_REF_NAME" *.vsix
         env:
           GH_TOKEN: ${{ github.token }}
