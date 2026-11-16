@@ -1,4 +1,5 @@
 # Hatch Code
+
 An extension to manage [Hatch environments] through [`vscode-python-environments`][].
 
 To make use of it, make sure your user settings contain `"python.useEnvironmentsExtension": true`.
@@ -7,6 +8,7 @@ To make use of it, make sure your user settings contain `"python.useEnvironments
 [`vscode-python-environments`]: https://github.com/microsoft/vscode-python-environments/#readme
 
 ## Features
+
 - List all configured [Hatch environments]
 - Provide controls to set them as active environment for your project, activate them in a terminal, and delete them from disk
 - Temporarily modify an environment’s packages using the configured [`installer`]
@@ -20,6 +22,7 @@ Persistent modifications to the installed packages should be done by editing Hat
 [`installer`]: https://hatch.pypa.io/latest/how-to/environment/select-installer/
 
 ## Commands
+
 - `hatch.envInterpreter`: not an interactive command, but rather for use in `launch.json` or `tasks.json` via [variable substitution], e.g. for `command` in `tasks.json` or `python` in `launch.json`:
 
   ```jsonc
@@ -54,8 +57,10 @@ Persistent modifications to the installed packages should be done by editing Hat
 [variable substitution]: https://code.visualstudio.com/docs/reference/variables-reference
 
 ## Extension Settings
+
 - `hatch.executable`: path to the `hatch` executable (supports `~` expansion). Defaults to the output of `which hatch`.
 
 ## Limitations
+
 - It’s pretty unclear which environments exist on disk and which don’t
 - We list internal envs that users don’t usually interact with, such as `hatch-uv` and `hatch-build`

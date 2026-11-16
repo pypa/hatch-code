@@ -13,6 +13,33 @@ jobs:
       pull-requests: write
     steps:
       - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: release
         with:
           release-type: node
           token: ${{ secrets.GH_CONTENT_TOKEN }}
+      # release-please writes `*` bullets, biome wants `-`: format its PR branch
+      - name: Clone release PR branch
+        if: steps.release.outputs.pr
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
+          token: ${{ secrets.GH_CONTENT_TOKEN }}
+          persist-credentials: true # zizmor: ignore[artipacked] needed to push, no artifacts uploaded
+      - if: steps.release.outputs.pr
+        run: corepack enable
+      - name: Install Node.js
+        if: steps.release.outputs.pr
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "lts/*"
+          package-manager-cache: false
+      - if: steps.release.outputs.pr
+        run: yarn install --immutable
+      - if: steps.release.outputs.pr
+        run: yarn biome format --write CHANGELOG.md
+      - if: steps.release.outputs.pr
+        uses: stefanzweifel/git-auto-commit-action@d0b01107b5db882071f96de5dd4b54961ea93f4c # v7.2.1
+        with:
+          commit_message: "chore: format changelog"
+          file_pattern: CHANGELOG.md
+          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
