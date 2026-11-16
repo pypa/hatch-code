@@ -4,6 +4,13 @@ All notable changes to the "hatch" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.3.0](https://github.com/pypa/hatch-code/compare/v0.2.1...v0.3.0) (2026-11-16)
+
+
+### Features
+
+* add project name to displayName ([#270](https://github.com/pypa/hatch-code/issues/270)) ([2912416](https://github.com/pypa/hatch-code/commit/2912416f43f9a22fe3e76123edd3dde5855d2d17))
+
 ## [0.2.1](https://github.com/pypa/hatch-code/compare/v0.2.0...v0.2.1) (2026-06-01)
 
 ### Bug Fixes
