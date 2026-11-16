@@ -91,6 +91,7 @@ describe('Env Manager', () => {
 
 		assert.ok(envs.length > 0, 'No environments found')
 		assert.equal(envs[0].name, 'mockenv')
+		assert.equal(envs[0].displayName, 'test:mockenv')
 		assert.equal(envs[0].sysPrefix, 'mockpath')
 	})
 
