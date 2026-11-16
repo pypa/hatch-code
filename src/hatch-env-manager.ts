@@ -340,11 +340,15 @@ export class HatchEnvManager implements EnvironmentManager {
 	async #getHatchEnvs(projectPath: string): Promise<HatchEnvironment[]> {
 		const hatchExe = await this.#hatch.executable
 		const envs = await this.#hatch.getEnvs(projectPath)
-		return envs.map((e) => this.#hatch2pythonEnv(hatchExe, e))
+		const projectName =
+			this.#api.getPythonProject(Uri.file(projectPath))?.name ??
+			paths.basename(projectPath)
+		return envs.map((e) => this.#hatch2pythonEnv(hatchExe, projectName, e))
 	}
 
 	#hatch2pythonEnv(
 		executable: string,
+		projectName: string,
 		{ name, path, conf, projectPath }: HatchEnvInfo,
 	): HatchEnvironment {
 		const shellActivation: Map<string, PythonCommandRunConfiguration[]> =
@@ -365,7 +369,7 @@ export class HatchEnvManager implements EnvironmentManager {
 		const envInfo: PythonEnvironmentInfo = {
 			name,
 			description: conf.description,
-			displayName: name,
+			displayName: `${projectName}:${name}`,
 			displayPath: path,
 			tooltip: path,
 			environmentPath: Uri.file(path),
