@@ -14,6 +14,7 @@ The scripts in `packagage.json` are used to manage this project.
 - `vsce-package` builds the VS Code extension.
 
 ## updating the logo
+
 - edit `assets/hatch-logo.fig` with Figma
 - export to SVG
 - convert to font using https://icomoon.io/
@@ -31,4 +32,3 @@ one still needs access to an organization.
 
 I personally have access to the `scverse` org so I’ll use that:
 [token settings](https://dev.azure.com/scverse/_usersSettings/tokens) (Select “Access scope: **All accessible organizations**” in the filter list)
-
