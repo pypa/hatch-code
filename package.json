@@ -99,7 +99,7 @@
 		"rolldown": "^1.2.1",
 		"typescript": "^6.0.3"
 	},
-	"packageManager": "yarn@4.15.0",
+	"packageManager": "yarn@4.18.1",
 	"dependencies": {
 		"@vscode/python-environments": "^1.0.0",
 		"untildify": "^6.0.0",
